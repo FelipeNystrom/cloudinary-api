@@ -1,6 +1,6 @@
 const Router = require('express-promise-router');
 const router = new Router();
-const { handleFormData, uploadImg } = require('../image-and-video-storage');
+const { handleFormData, uploadImg } = require('../_image-and-video-storage');
 
 module.exports = router;
 

@@ -16,8 +16,14 @@ const tempStorageTruncate = () => {
 };
 
 /* Config for cors handling */
+let whitelist;
 
-const whitelist = process.env.CLIENTS.split(',');
+process.env.CLIENTS.length > 0
+  ? (whitelist = process.env.CLIENTS.split(','))
+  : (whitelist = []);
+
+console.log(`Requests can be made from whitelisted clients: ${whitelist}`);
+
 const corsOptions = {
   origin: (origin, callback) => {
     if (whitelist.indexOf(origin) !== -1) {
