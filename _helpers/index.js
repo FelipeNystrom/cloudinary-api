@@ -18,7 +18,7 @@ const tempStorageTruncate = () => {
 /* Config for cors handling */
 let whitelist;
 
-process.env.CLIENTS.length > 0
+process.env.CLIENTS !== undefined
   ? (whitelist = process.env.CLIENTS.split(','))
   : (whitelist = []);
 
