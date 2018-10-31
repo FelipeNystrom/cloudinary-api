@@ -1,7 +1,7 @@
 const express = require('express');
 const server = express();
-const mountRoutes = require('./routes');
-const { corsConfig } = require('./helpers');
+const mountRoutes = require('./_routes');
+const { corsConfig } = require('./_helpers');
 const cors = require('cors');
 const port = process.env.PORT || 6000;
 
