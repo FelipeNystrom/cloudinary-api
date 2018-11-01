@@ -1,6 +1,13 @@
+const redis = require('redis');
 const Router = require('express-promise-router');
 const router = new Router();
 const { handleFormData, uploadImg } = require('../_image-and-video-storage');
+
+const client = redis.createClient();
+
+client.on('error', err => {
+  console.log('Error ' + err);
+});
 
 module.exports = router;
 
