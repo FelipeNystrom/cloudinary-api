@@ -9,14 +9,14 @@ router.post('/image', handleFormData.single('img'), async (req, res) => {
 
   //   Send back error when image is not sent right
   if (!folderName) {
-    res.status(500).send({
+    return res.status(500).send({
       Error_message:
         'Missing destination folder in form, matching key "folderName"'
     });
   }
   // Check description type to be of type string
   if (description !== null && typeof description !== 'string') {
-    res.status(500).send({
+    return res.status(500).send({
       Error_message: 'image description must be of type string'
     });
   }
