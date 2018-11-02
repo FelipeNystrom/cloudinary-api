@@ -7,7 +7,7 @@ module.exports = {
   uploadImg: (imgPath, toFolder) => {
     return cloudinary.v2.uploader.upload(
       imgPath,
-      { folder: toFolder, use_filename: true },
+      { folder: toFolder, use_filename: true, phash: true },
       (error, result) => (result, error)
     );
   },
