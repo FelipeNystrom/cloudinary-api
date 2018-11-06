@@ -1,15 +1,8 @@
-const redis = require('redis');
 const Router = require('express-promise-router');
 const router = new Router();
-const { promisify } = require('util');
+const pHash = require('phash-imagemagick');
 const { handleFormData, uploadImg } = require('../_image-and-video-storage');
 const { tempStorageTruncate } = require('../_helpers');
-
-const client = redis.createClient();
-
-client.on('error', err => {
-  console.log('Error ' + err);
-});
 
 module.exports = router;
 
@@ -29,7 +22,7 @@ router.post('/image', handleFormData.single('img'), async (req, res) => {
       Error_message: 'image description must be of type string'
     });
   }
-
+  //  Check if file is included in request
   if (req.file.path === null || undefined) {
     return res.status(500).send({
       Error_message:
@@ -51,15 +44,7 @@ router.post('/image', handleFormData.single('img'), async (req, res) => {
     Result form upload is an object where public id and https link is saved and sent back in response
     */
 
-    const { public_id, etag, secure_url } = await cloudinaryResult;
-
-    const storeInCache = await promisify(client.hset).bind(client)(
-      'imgs',
-      'hash',
-      etag
-    );
-
-    console.log(storeInCache);
+    const { public_id, secure_url } = await cloudinaryResult;
 
     res.send({
       message: `image succefully saved on cloudinary in folder ${folderName}`,
