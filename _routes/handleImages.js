@@ -28,7 +28,7 @@ router.delete('/image/delete', handleFormData.none(), async (req, res) => {
     const cloudinaryResult = await deleteImg(imgId);
 
     if (cloudinaryResult === 'not found') {
-      return res.status.send({ Error_message: cloudinaryResult });
+      return res.status(404).send({ Error_message: cloudinaryResult });
     }
 
     return res.send({ message: cloudinaryResult });
