@@ -5,11 +5,11 @@ const { uploadOrUpdateImg } = require('../_helpers');
 
 module.exports = router;
 
-router.post('/image/upload', handleFormData.single('img'), uploadOrUpdateImg);
+router.post('/upload', handleFormData.single('img'), uploadOrUpdateImg);
 
-router.put('/image/update', handleFormData.single('img'), uploadOrUpdateImg);
+router.put('/update', handleFormData.single('img'), uploadOrUpdateImg);
 
-router.delete('/image/delete', handleFormData.none(), async (req, res) => {
+router.delete('/delete', handleFormData.none(), async (req, res) => {
   const {
     body: { folderName, imgId }
   } = req;
