@@ -1,14 +1,11 @@
 const express = require('express');
 const server = express();
 const mountRoutes = require('./_routes');
-const { corsConfig } = require('./_helpers');
-const cors = require('cors');
 const port = process.env.PORT || 6000;
 
 // server configs
 server.use(express.json());
 server.use(express.urlencoded({ extended: false }));
-server.use(cors({ corsConfig }));
 
 mountRoutes(server);
 
